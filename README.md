@@ -1,3 +1,3 @@
 # projectChannels
 
-Guide to creating static website
+Guide to creating a secure static website
