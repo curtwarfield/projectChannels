@@ -13,7 +13,7 @@ We'll be using [Cloudflare's](https://cloudflare.com) **Domain Name System (DNS)
 
 1. Go to [Cloudflare](https://cloudflare.com) to create a new acccount or log into your account if you already have one.
 
-2. Add your domain name to your `Cloudflare` account. **Cloudflare** searches for any existing `DNS` records for your domain and gives you the `Nameservers` to use on your registar's dashboard.
+2. Add your domain name to your `Cloudflare` account. **Cloudflare** searches for any existing `DNS` records to import for your domain and gives you the `Nameservers` that you need to use for your domain registar.
     > #### Choose the free option when adding your domain!
 
 3. Add your public IP address as an `A` record in the `DNS` settings. If you don't know your public IP address, go to [whatismyip.org](https://whatismyip.org) to verify it. Make sure you leave the **Proxied** status enabled to hide your public IP address. This makes your website more secure.
