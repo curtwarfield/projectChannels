@@ -21,6 +21,14 @@ We'll be using [Cloudflare's](https://cloudflare.com) **Domain Name System (DNS)
 4. Add **Cloudflare's** `Nameservers` in your domain registar's dashboard to make sure these are the only `Nameservers` your domain is using. Every domain registar's dashboard is unique, so you'll need to find out how to make `DNS` changes for your domain.
     > **It can take a few hours or more for DNS changes to populate globally across the internet.**
 
+## Docker installation and configuration
+[Docker](https://www.docker.com) is an application used to create isolated self-sufficient software applications called `containers`. Containers have their own dependencies and configuration. They provide an efficient and stable enviornment and are an easy way to get applications up and runing quickly.
+
+Install a few prerequisite packages.
+~~~
+sudo apt install apt-transport-https ca-certificates curl software-properties-common
+~~~
+
 ## Creating a **Cloudflare** Argo tunnel
 
 Install the `cloudflared` package
