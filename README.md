@@ -22,6 +22,8 @@ Every domain registar's dashboard is unique, so you'll need to find out how you 
 
 2. Add your domain name to your `Cloudflare` account.
 
+3. Add your public IP address as an `A` record in the `DNS` settings.
+
 ## Creating a **Cloudflare** Argo tunnel
 
 Install the `cloudflared` package
