@@ -20,10 +20,10 @@ Every domain registar's dashboard is unique, so you'll need to find out how you 
 
 1. Go to [Cloudflare](https://cloudflare.com) to create a new acccount or log into your account if you already have one.
 
-2. Add your domain name to your `Cloudflare` account.
+2. Add your domain name to your `Cloudflare` account. **Cloudflare** searches for any existing `DNS` records for your domain and gives you the `Nameservers` to use on your registar's dashboard.
 
 3. Add your public IP address as an `A` record in the `DNS` settings.
-
+     If you don't know your public IP address, go to [whatismyip.org](https://whatismyip.org) to verify it.
 ## Creating a **Cloudflare** Argo tunnel
 
 Install the `cloudflared` package
