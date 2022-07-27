@@ -24,10 +24,44 @@ We'll be using [Cloudflare's](https://cloudflare.com) **Domain Name System (DNS)
 ## Docker installation and configuration
 [Docker](https://www.docker.com) is an application used to create isolated self-sufficient software applications called `containers`. Containers have their own dependencies and configuration. They provide an efficient and stable enviornment and are an easy way to get applications up and runing quickly.
 
-Install a few prerequisite packages.
+1. Install a few prerequisite packages.
 ~~~
 sudo apt install apt-transport-https ca-certificates curl software-properties-common
 ~~~
+
+2. Add the GPG key for the **Docker** repository.
+~~~
+sudo curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+~~~
+
+3. Add the **Docker** repository.
+~~~
+sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu focal stable"
+~~~
+
+4. Run the `apt-cache` command to make sure to install from the **Docker** repository instead **Ubuntu's**.
+~~~
+sudo apt-cache policy docker-ce
+~~~
+
+5. Install `docker`.
+~~~
+sudo apt install docker-ce
+~~~
+
+6. Check to make sure that `docker` is running.
+~~~
+sudo systemctl status docker
+~~~
+
+7. Add yourself to the `docker` group if you don't want to run `docker` as `sudo`.
+~~~
+sudo usermod -aG docker ${USER}
+~~~
+
+> **Substitute the `${USER}` variable for your own name.**
+
+We need to install one more tool to manage our `containers`. `Docker Compose` is a tool that makes it easier to manage `containers`. `Docker Compose` uses a single configuration file named `docker-compose.yml`
 
 ## Creating a **Cloudflare** Argo tunnel
 
