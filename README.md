@@ -42,7 +42,7 @@ sudo usermod -aG docker ${USER}
 
 ## Installing Nginx Proxy Manager
 
-The [Nginx proxy manager](https://nginxproxymanager.com/) is a reverse proxy management system that exposes your private network Web services securely with free SSL certificates via [Let's Encrypt](https://letsencrypt.org/). It runs as a  **docker** `container` and uses a single `docker-compose.yml` file.
+The [Nginx proxy manager](https://nginxproxymanager.com/) is a reverse proxy management system that exposes your private network Web services securely with free SSL certificates via [Let's Encrypt](https://letsencrypt.org/). It runs as a  `docker` `container` and uses a single `docker-compose.yml` file.
 
 1. Create a `docker` directory and a `npm` subdirectory.
 ~~~
@@ -113,18 +113,23 @@ Password: changeme
 
 [Hugo](https://gohugo.io/) is one of the most popular open-source static site generators because of it's speed and simplicity. You don't even need to know anything about `HTML` because it will automatically create websites from simple [Markdown](https://www.markdownguide.org/) files.
 
-We will be using **Hugo** to create our website.
+We will be using **Hugo** to create our website.  
 
-1. Install **Hugo**
+**STEP 1:**  
+    
+Install **Hugo**
 ~~~
-sudo apt install hugo -y
+$ sudo apt install hugo
 ~~~
 
-2. Create your website using a single **Hugo** command.
+**STEP 2:**    
+    
+Create your website using the `hugo` command. Let's call the website `mywebsite` for this example.
 ~~~
-hugo new site docker/mywebsite
+$ hugo new site docker/mywebsite
 ~~~
-&nbsp;&nbsp;&nbsp;&nbsp;You will see output similar to this:
+
+You should see similiar output like this:
 ~~~
 Congratulations! Your new Hugo site is created in /home/curt/docker/mywebsite.
 
