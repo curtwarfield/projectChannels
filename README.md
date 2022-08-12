@@ -42,62 +42,41 @@ sudo usermod -aG docker ${USER}
 
 ## Installing Nginx Proxy Manager
 
-[Nginx proxy manager](https://nginxproxymanager.com/) **NPM** is a reverse proxy management system that exposes your private network Web services securely with free SSL certificates via [Let's Encrypt](https://letsencrypt.org/). It is designed as a **Docker** `container` and will only use a single `docker-compose.yml` for installation and configuration.
+The [Nginx proxy manager](https://nginxproxymanager.com/) is a reverse proxy management system that exposes your private network Web services securely with free SSL certificates via [Let's Encrypt](https://letsencrypt.org/). It runs as a  **docker** `container` and uses a single `docker-compose.yml` file.
 
-1. To keep things organized, create a docker directory and a npm subdirectory in your home directory.
+1. Create a `docker` directory and a `npm` subdirectory.
 ~~~
-mkdir -p docker/npm
+$ mkdir -p docker/npm ; cd docker/npm
 ~~~
 
-2. From the npm subdirectory create the `docker-compose.yml` configuration file.
+2. Create the `docker-compose.yml` file.
 ~~~
-$ cd docker/npm
-
 $ vi docker-compose.yml
 ~~~
-The file needs to contain the following:
+
+ &nbsp; &nbsp;Here is the completed file:
+ ~~~
+    version: '3'
+    services:
+      app:
+        image: 'jc21/nginx-proxy-manager:latest'
+        restart: unless-stopped
+        ports:
+          - '80:80'
+          - '81:81'
+          - '443:443'
+        volumes:
+          - ./data:/data
+          - ./letsencrypt:/etc/letsencrypt
 ~~~
-version: '3'
-services:
-  app:
-    image: 'jc21/nginx-proxy-manager:latest'
-    ports:
-      - '80:80'
-      - '81:81'
-      - '443:443'
-    environment:
-      DB_MYSQL_HOST: "db"
-      DB_MYSQL_PORT: 3306
-      DB_MYSQL_USER: "npm"
-      DB_MYSQL_PASSWORD: "npm"
-      DB_MYSQL_NAME: "npm"
-    restart: unless-stopped
-    volumes:
-      - ./data:/data
-      - ./letsencrypt:/etc/letsencrypt
-  db:
-    image: 'jc21/mariadb-aria:latest'
-    environment:
-      MYSQL_ROOT_PASSWORD: 'npm'
-      MYSQL_DATABASE: 'npm'
-      MYSQL_USER: 'npm'
-      MYSQL_PASSWORD: 'npm'
-    restart: unless-stopped
-    volumes:
-      - ./data/mysql:/var/lib/mysql
-~~~
-> **When you are creating your `docker-compose.yml` text file, spacing and indentation is important because it uses [yaml](https://yaml.org/) formatting.**
 
-> **I also recommend changing the passwords from `npm` to something more secure.**
+ &nbsp; &nbsp;When creating the `docker-compose.yml` file, spacing and indentation are important because the file uses [yaml](https://yaml.org/) formatting.
 
-This file looks overwhelming and will be difficult to understand if you don't have any experience with `docker`. But basically here is what the file does.
-* Automatically downloads the `Nginx Proxy Manager` application and a `MySQL` database. 
-* Creates the storage volumes within your npm subdirectory that the applications will use.
-* Specifies the ports that will be used.
-* Automatically restart the application if terminated.
-* Configures the usernames and passwords.
-
-This is why **Docker** `containers` are so powerful. Everything is self-contained in your npm subdirectory and running one command will automatically launch the application and database for you.
+ &nbsp; &nbsp;Here is what the `docker-compose.yml` file does:
+* Automatically downloads the `Nginx Proxy Manager` application and starts it. 
+* Creates the storage volumes that the applications uses.
+* Configures the network ports.
+* Automatically restarts the application if terminated.
 
 3. Start the `Nginx Proxy Manager`.
 ~~~
@@ -108,7 +87,7 @@ $ docker-compose up -d
 ~~~
 $ docker ps 
 ~~~
-If everything is working successfully, you will see output similar to this:
+ &nbsp; &nbsp;If everything is working successfully, you will see output similar to this:
 ~~~
 IMAGE                     PORTS                                                                                 NAMES
 jc21/nginx-proxy-manager  0.0.0.0:80-81->80-81/tcp, :::80-81->80-81/tcp, 0.0.0.0:443->443/tcp, :::443->443/tcp  nginx_app_1
@@ -120,12 +99,13 @@ jc21/mariadb-aria:latest  3306/tcp                                              
 http://127.0.0.1:81
 ~~~
 
-&nbsp; &nbsp; &nbsp;&nbsp;Default Admin user:
+&nbsp;&nbsp;&nbsp;Default Admin user:
 ~~~
 Email:    admin@example.com
 Password: changeme
 ~~~
-&nbsp; &nbsp; &nbsp;&nbsp;After logging in you will be asked to modify your details and change the default email address and  password.
+
+ &nbsp;&nbsp;&nbsp;After logging in you will be asked to modify your details and change the default email address and  password.
 
 6. Close your web browser to exit `Nginx Proxy Manger`.
 
